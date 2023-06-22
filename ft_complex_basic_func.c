@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex_basic_func.c                               :+:      :+:    :+:   */
+/*   ft_complex_basic_func.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:29:19 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:32:10 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:06:46 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "complex.h"
+#include "ft_complex.h"
 #include <math.h>
 
 double	ft_cabs(t_complex c)

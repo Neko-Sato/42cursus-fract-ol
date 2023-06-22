@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex.h                                          :+:      :+:    :+:   */
+/*   ft_complex.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:29:32 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:43:58 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:46:37 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPLEX_H
-# define COMPLEX_H
+#ifndef FT_COMPLEX_H
+# define FT_COMPLEX_H
 
 typedef struct s_complex
 {
