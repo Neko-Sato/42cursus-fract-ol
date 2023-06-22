@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:48:59 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 22:21:37 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/06/23 01:56:57 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/06/23 02:22:30 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-
-double	ft_atof(const char *str)
+int	rgb2hex(int r, int g, int b)
 {
-	double	ret;
-	int		rank;
+	int	color;
 
-	ret = 0;
-	rank = 1;
-	while (*str && ft_isdigit(*str))
-	{
-		ret *= 10;
-		ret += *str++ - '0';
-	}
-	if (*str == '.')
-		str++;
-	while (*str && ft_isdigit(*str))
-	{
-		rank *= 10;
-		ret += (*str++ - '0') / (double)rank;
-	}
-	return (ret);
+	color = 0;
+	color |= (r & 0xFF) < 16;
+	color |= (g & 0xFF) < 8;
+	color |= (b & 0xFF) < 0;
+	return (color);
+}
+
+int	hsv2hex(double h, double s, double v)
+{
+
 }

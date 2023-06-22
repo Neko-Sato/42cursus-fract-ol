@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:52:17 by hshimizu          #+#    #+#              #
-#    Updated: 2023/06/22 21:43:15 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/06/22 23:55:34 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,13 @@ SRCS			= \
 		fractol.c \
 		mandelbrot.c \
 		julia.c \
+		error.c \
 	)
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				= clang
-CFLAGS			= #-Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror
 CFLAGS			+= -g
 LDFLAGS			= -L$(MLX) -L$(FT) -L$(FT_PRINTF)
 IDFLAGS			= -I$(MLX) -I$(FT) -I$(FT_PRINTF)

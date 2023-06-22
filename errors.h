@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:48:59 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 22:21:37 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/06/22 23:31:52 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/06/22 23:32:54 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#ifndef ERRORS_H
+# define ERRORS_H
 
-double	ft_atof(const char *str)
-{
-	double	ret;
-	int		rank;
+void malloc_error(void);
+void bad_argment_error(void);
 
-	ret = 0;
-	rank = 1;
-	while (*str && ft_isdigit(*str))
-	{
-		ret *= 10;
-		ret += *str++ - '0';
-	}
-	if (*str == '.')
-		str++;
-	while (*str && ft_isdigit(*str))
-	{
-		rank *= 10;
-		ret += (*str++ - '0') / (double)rank;
-	}
-	return (ret);
-}
+#endif

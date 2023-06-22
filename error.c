@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:48:59 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 22:21:37 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/06/22 23:28:14 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/06/22 23:55:47 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <ft_printf.h>
+#include <stdlib.h>
 
-double	ft_atof(const char *str)
+void	malloc_error(void)
 {
-	double	ret;
-	int		rank;
+	ft_printf("malloc error.\n");
+	exit(1);
+}
 
-	ret = 0;
-	rank = 1;
-	while (*str && ft_isdigit(*str))
-	{
-		ret *= 10;
-		ret += *str++ - '0';
-	}
-	if (*str == '.')
-		str++;
-	while (*str && ft_isdigit(*str))
-	{
-		rank *= 10;
-		ret += (*str++ - '0') / (double)rank;
-	}
-	return (ret);
+void	bad_argment_error(void)
+{
+	ft_printf("bad argement error.\n");
+	exit(1);
 }

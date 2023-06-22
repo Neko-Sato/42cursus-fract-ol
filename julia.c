@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 02:19:08 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 22:11:43 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:54:08 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ size_t	julia_formula(t_complex z, t_complex c)
 
 void	julia(t_complex c)
 {
+	c = (t_complex){0 , 0};
 	exit(0);
 }
