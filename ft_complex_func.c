@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:29:19 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/22 19:16:23 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:16:37 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_complex	ft_cpow(t_complex a, t_complex b)
 	return (ft_cexp(ft_cmul(b, ft_cln(a))));
 }
 
-t_complex	ft_log(t_complex a, t_complex b)
+t_complex	ft_clog(t_complex a, t_complex b)
 {
 	return (ft_cdiv(ft_cln(a), ft_cln(b)));
 }
