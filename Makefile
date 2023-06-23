@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:52:17 by hshimizu          #+#    #+#              #
-#    Updated: 2023/06/23 03:06:50 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/06/23 16:46:15 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(OBJS_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(IDFLAGS) $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
 	@make -C $(MLX) clean
