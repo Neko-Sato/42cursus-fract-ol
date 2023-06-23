@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:09:02 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 02:58:40 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:31:20 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "ft_complex.h"
 # include <mlx_int.h>
 
-# define MAX_ITER 100
-# define WIN_SIZE_X 4000
-# define WIN_SIZE_Y 3000
+# define MAX_ITER 20
+# define WIN_SIZE_X 1000
+# define WIN_SIZE_Y 720
 
 typedef struct s_win
 {
