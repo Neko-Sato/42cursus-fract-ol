@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:26:55 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/24 06:18:58 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/24 06:59:29 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	set_data(t_data_addr *data_addr, t_plot_args *plot_args)
 		j = 0;
 		while (j < plot_args->height)
 		{
-			addr = data_addr.addr + (j * data_addr.size_line + i
-					* (data_addr.bits_per_pixel / 8));
-			x = (i - plot_args->width / 2) * plot_args->scale * BASE_SCALE;
-			y = -(j - plot_args->height / 2) * plot_args->scale * BASE_SCALE;
+			addr = (unsigned int *)(data_addr->addr + (j * data_addr->size_line
+						+ i * (data_addr->bits_per_pixel / 8)));
+			x = plot_args->x + (i - plot_args->width / 2) * plot_args->scale;
+			y = plot_args->y + (plot_args->height/2 - j) * plot_args->scale;
 			*addr = plot_args->plot_func(x, y, plot_args->args);
 			j++;
 		}
@@ -51,6 +51,7 @@ static int	plot_func(t_plot_func_args args)
 	set_data(&data_addr, args.plot_args);
 	mlx_put_image_to_window(args.mlx, args.mlx_win, imge, 0, 0);
 	mlx_destroy_image(args.mlx, imge);
+	return (0);
 }
 
 //	Generates and plots window

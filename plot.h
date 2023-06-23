@@ -6,14 +6,12 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 06:16:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/24 06:19:31 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/24 06:30:41 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLOT_H
 # define PLOT_H
-
-# define BASE_SCALE 500
 
 typedef int		(*t_plot_func)(double x, double y, void *args);
 
