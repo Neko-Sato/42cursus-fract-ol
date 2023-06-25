@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 01:56:57 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/25 18:03:28 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:58:38 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ int	rgba2hex(int r, int g, int b, int a)
 	return (color);
 }
 
-// 0-1: red2yellow
-// 1-2: yellow2green
-// 2-3: green2cyan
-// 3-4: cyan2blue
-// 4-5: blue2magenta
-// 5-6: magenta2red
 int	hsvt2hex(double h, double s, double v, double t)
 {
 	int		ret;
@@ -58,21 +52,16 @@ int	hsvt2hex(double h, double s, double v, double t)
 	return (ret);
 }
 
-// int	colormap(double n)
-// {
-// 	return (hsvt2hex(n - 1 / 6., 1, sin(n * M_PI), 0));
-// }
-
 int	colormap(double n)
 {
 	double	t[2];
 
-	t[0] = 1;
-	t[1] = sin(n * M_PI);
-	if (0.5 <n)
+	t[0] = 1.;
+	t[1] = 2. * n;
+	if (1. < t[1])
 	{
-		t[0] = t[1];
+		t[0] = 2. - t[1];
 		t[1] = 1.;
 	}
-	return (hsvt2hex(5 / 6. - n, t[0], t[1], 0));
+	return (hsvt2hex(5. / 6. - n, t[0], t[1], 0.));
 }
