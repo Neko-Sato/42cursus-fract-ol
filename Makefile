@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:52:17 by hshimizu          #+#    #+#              #
-#    Updated: 2023/06/24 06:41:39 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/06/25 17:49:30 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ SRCS			= \
 	$(addprefix $(DIR)/, \
 		ft_complex_basic_operator.c \
 		ft_complex_basic_func.c \
-		ft_complex_func.c \
 		ft_atof.c \
 		plot.c \
+		plot_utils.c \
 		color.c \
 		fractol.c \
 		mandelbrot.c \

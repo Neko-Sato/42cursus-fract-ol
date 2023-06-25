@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 01:56:57 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 16:02:27 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:03:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	rgba2hex(int r, int g, int b, int a)
 	return (color);
 }
 
+// 0-1: red2yellow
+// 1-2: yellow2green
+// 2-3: green2cyan
+// 3-4: cyan2blue
+// 4-5: blue2magenta
+// 5-6: magenta2red
 int	hsvt2hex(double h, double s, double v, double t)
 {
 	int		ret;
@@ -31,23 +37,42 @@ int	hsvt2hex(double h, double s, double v, double t)
 	double	x;
 	double	m;
 
-	h *= 6;
-	c = v * s;
+	h = fmod(1 + fmod(h, 1), 1) * 6;
+	c = s * v;
 	x = c * (1 - fabs(fmod(h, 2) - 1));
 	m = v - c;
-	if (h <= 0. && h < 1.)
-		ret = rgb2hex((m + c) * 0xFF, (m + x) * 0xFF, (m + 0) * 0xFF, t * 0xFF);
-	else if (h <= 1. && h < 2.)
-		ret = rgb2hex((m + x) * 0xFF, (m + c) * 0xFF, (m + 0) * 0xFF, t * 0xFF);
-	else if (h <= 2. && h < 3.)
-		ret = rgb2hex((m + 0) * 0xFF, (m + c) * 0xFF, (m + x) * 0xFF, t * 0xFF);
-	else if (h <= 3. && h < 4.)
-		ret = rgb2hex((m + 0) * 0xFF, (m + x) * 0xFF, (m + c) * 0xFF, t * 0xFF);
-	else if (h <= 4. && h < 5.)
-		ret = rgb2hex((m + x) * 0xFF, (m + 0) * 0xFF, (m + c) * 0xFF, t * 0xFF);
-	else if (h <= 5. && h < 6.)
-		ret = rgb2hex((m + c) * 0xFF, (m + 0) * 0xFF, (m + x) * 0xFF, t * 0xFF);
+	if (0. <= h && h < 1.)
+		ret = rgba2hex((m + c) * 0xFF, (m + x) * 0xFF, m * 0xFF, t * 0xFF);
+	else if (1. <= h && h < 2.)
+		ret = rgba2hex((m + x) * 0xFF, (m + c) * 0xFF, m * 0xFF, t * 0xFF);
+	else if (2. <= h && h < 3.)
+		ret = rgba2hex(m * 0xFF, (m + c) * 0xFF, (m + x) * 0xFF, t * 0xFF);
+	else if (3. <= h && h < 4.)
+		ret = rgba2hex(m * 0xFF, (m + x) * 0xFF, (m + c) * 0xFF, t * 0xFF);
+	else if (4. <= h && h < 5.)
+		ret = rgba2hex((m + x) * 0xFF, m * 0xFF, (m + c) * 0xFF, t * 0xFF);
+	else if (5. <= h && h < 6.)
+		ret = rgba2hex((m + c) * 0xFF, m * 0xFF, (m + x) * 0xFF, t * 0xFF);
 	else
-		ret = rgb2hex((m + 0) * 0xFF, (m + 0) * 0xFF, (m + 0) * 0xFF, t * 0xFF);
+		ret = rgba2hex(m * 0xFF, m * 0xFF, m * 0xFF, t * 0xFF);
 	return (ret);
+}
+
+// int	colormap(double n)
+// {
+// 	return (hsvt2hex(n - 1 / 6., 1, sin(n * M_PI), 0));
+// }
+
+int	colormap(double n)
+{
+	double	t[2];
+
+	t[0] = 1;
+	t[1] = sin(n * M_PI);
+	if (0.5 <n)
+	{
+		t[0] = t[1];
+		t[1] = 1.;
+	}
+	return (hsvt2hex(5 / 6. - n, t[0], t[1], 0));
 }

@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:09:02 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 16:31:20 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:46:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,21 @@
 # define FRACTOL_H
 
 # include "ft_complex.h"
-# include <mlx_int.h>
+# include "plot.h"
+#include <stddef.h>
 
-# define MAX_ITER 20
-# define WIN_SIZE_X 1000
-# define WIN_SIZE_Y 720
+typedef int				(*t_plot_cds_formula)(t_complex c, void *args,
+					size_t max_iter);
 
-typedef struct s_win
+typedef struct s_plot_cds_args
 {
-	t_win_list	*mlx_win;
-	double		point_x;
-	double		point_y;
-	double		magnification;
-}				t_win;
+	t_plot_cds_formula	formula;
+	size_t				max_inter;
+	void				*args;
+}						t_plot_cds_args;
 
-typedef struct s_vars
-{
-	t_xvar		*mlx;
-	t_win		win;
-}				t_vars;
-
-typedef struct s_mandelbrot
-{
-	t_vars		vars;
-}				t_mandelbrot;
-
-typedef struct s_julia
-{
-	t_vars		vars;
-	t_complex	c;
-}				t_julia;
-
-void			fractol_mlx_init(void *vars);
-void			fractol_win_init(void *vars, char *title);
-void			mandelbrot(void);
-void			julia(t_complex c);
+void	plot_cds(t_data_addr *data_addr, t_plot_var *var);
+void	mandelbrot(void);
+void	julia(void);
 
 #endif

@@ -6,35 +6,41 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:15 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 01:06:29 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/25 17:26:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
+#include "color.h"
 #include "fractol.h"
-#include <mlx.h>
+#include "ft_complex.h"
+#include "plot.h"
 
-void	fractol_mlx_init(void *_vars)
+//	complex_divergent_set
+void	plot_cds(t_data_addr *data_addr, t_plot_var *var)
 {
-	t_vars	*vars;
+	int				i;
+	int				j;
+	int				temp;
+	unsigned int	*addr;
+	t_plot_cds_args	*args;
 
-	vars = _vars;
-	vars->mlx = mlx_init();
-	if (!vars->mlx)
-		malloc_error();
-}
-
-void	fractol_win_init(void *_vars, char *title)
-{
-	t_vars	*vars;
-	t_win	*win;
-
-	vars = _vars;
-	win = &vars->win;
-	win->mlx_win = mlx_new_window(vars->mlx, WIN_SIZE_X, WIN_SIZE_Y, title);
-	if (!win->mlx_win)
-		malloc_error();
-	win->point_x = 0;
-	win->point_y = 0;
-	win->magnification = 1;
+	args = var->args;
+	i = 0;
+	while (i < var->width)
+	{
+		j = 0;
+		while (j < var->height)
+		{
+			addr = (unsigned int *)(data_addr->addr + (j * data_addr->size_line
+						+ i * (data_addr->bits_per_pixel / 8)));
+			temp = args->formula((t_complex){i2x(i, var), j2y(j, var)},
+					args->args, args->max_inter);
+			if (temp != -1)
+				*addr = colormap(temp / (double)args->max_inter);
+			else
+				*addr = 0;
+			j++;
+		}
+		i++;
+	}
 }
