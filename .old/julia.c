@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 02:19:08 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/25 17:51:11 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/25 22:59:15 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	julia(void)
 	var.height = 740;
 	var.scale = 1. / 250;
 	var.args = &args;
+	args.args = 0;
 	args.args = &a;
 	args.formula = julia_formula;
 	args.max_inter = 20;
-	plot(mlx, "julia", &var, plot_cds);
+	plot(mlx, "julia", plot_cds, &var);
 	mlx_loop(mlx);
 }

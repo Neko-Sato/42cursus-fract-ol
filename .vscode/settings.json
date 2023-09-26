@@ -1,0 +1,30 @@
+{
+	"files.associations": {
+		"fractol.h": "c",
+		"mlx.h": "c",
+		"x.h": "c",
+		"mlx_int.h": "c",
+		"keysym.h": "c",
+		"libft.h": "c",
+		"keysymdef.h": "c",
+		"xlib.h": "c",
+		"cmath": "c",
+		"math.h": "c",
+		"stdlib.h": "c",
+		"sstream": "c",
+		"functional": "c",
+		"random": "c",
+		"complex.h": "c",
+		"stdio.h": "c",
+		"complex": "c",
+		"*.tcc": "c",
+		"deque": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c"
+	}
+}

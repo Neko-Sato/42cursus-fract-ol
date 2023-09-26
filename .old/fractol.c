@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:15 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/25 17:26:01 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:19:56 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "plot.h"
 
 //	complex_divergent_set
-void	plot_cds(t_data_addr *data_addr, t_plot_var *var)
+int	plot_cds(t_data_addr *data_addr, t_plot_var *var)
 {
 	int				i;
 	int				j;
@@ -34,7 +34,8 @@ void	plot_cds(t_data_addr *data_addr, t_plot_var *var)
 			addr = (unsigned int *)(data_addr->addr + (j * data_addr->size_line
 						+ i * (data_addr->bits_per_pixel / 8)));
 			temp = args->formula((t_complex){i2x(i, var), j2y(j, var)},
-					args->args, args->max_inter);
+									args->args,
+									args->max_inter);
 			if (temp != -1)
 				*addr = colormap(temp / (double)args->max_inter);
 			else
@@ -43,4 +44,5 @@ void	plot_cds(t_data_addr *data_addr, t_plot_var *var)
 		}
 		i++;
 	}
+	return (0);
 }

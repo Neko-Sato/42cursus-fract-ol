@@ -1,53 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_complex_basic_operator.c                        :+:      :+:    :+:   */
+/*   ft_complex_function.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:29:19 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 16:54:48 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:07:18 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_complex.h"
 #include <math.h>
 
-t_complex	ft_cadd(t_complex a, t_complex b)
+t_complex	ft_cexp(t_complex c)
 {
 	t_complex	ret;
 
-	ret.real = a.real + b.real;
-	ret.imag = a.imag + b.imag;
+	ret.real = exp(c.real) * cos(c.imag);
+	ret.imag = exp(c.real) * sin(c.imag);
 	return (ret);
 }
 
-t_complex	ft_csub(t_complex a, t_complex b)
+t_complex	ft_cln(t_complex c)
 {
 	t_complex	ret;
 
-	ret.real = a.real - b.real;
-	ret.imag = a.imag - b.imag;
+	ret.real = log(sqrt(pow(c.real, 2) + pow(c.imag, 2)));
+	ret.imag = ft_carg(c);
 	return (ret);
 }
 
-t_complex	ft_cmul(t_complex a, t_complex b)
+t_complex	ft_cpow(t_complex a, t_complex b)
 {
-	t_complex	ret;
-
-	ret.real = a.real * b.real - a.imag * b.imag;
-	ret.imag = a.real * b.imag + a.imag * b.real;
-	return (ret);
+	if (!a.imag && !b.imag)
+		return ((t_complex){pow(a.real, b.real), 0});
+	return (ft_cexp(ft_cmul(b, ft_cln(a))));
 }
 
-t_complex	ft_cdiv(t_complex a, t_complex b)
+t_complex	ft_clog(t_complex a, t_complex b)
 {
-	t_complex	ret;
-	double		pow2_abs_b;
-
-	ret = ft_cmul(a, ft_conj(b));
-	pow2_abs_b = pow(b.real, 2) + pow(b.imag, 2);
-	ret.real /= pow2_abs_b;
-	ret.imag /= pow2_abs_b;
-	return (ret);
+	if (!a.imag && !b.imag)
+		return ((t_complex){log(a.real) / log(b.real), 0});
+	return (ft_cdiv(ft_cln(a), ft_cln(b)));
 }

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_complex.h                                       :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 15:29:32 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/24 19:35:08 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/09/26 14:51:02 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/09/26 22:24:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_COMPLEX_H
-# define FT_COMPLEX_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
-typedef struct s_complex
+typedef struct s_fractol
 {
-	double	real;
-	double	imag;
-}			t_complex;
+	char	*title;
+	int		width;
+	int		height;
+}			t_fractol;
 
-t_complex	ft_cadd(t_complex a, t_complex b);
-t_complex	ft_csub(t_complex a, t_complex b);
-t_complex	ft_cmul(t_complex a, t_complex b);
-t_complex	ft_cdiv(t_complex a, t_complex b);
+typedef struct s_fractol_local
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		width;
+	int		height;
+	int		zoom;
+}			t_fractol_local;
 
-double		ft_cabs(t_complex c);
-t_complex	ft_conj(t_complex c);
-double		ft_carg(t_complex c);
+void	fractol(t_fractol *var);
 
 #endif

@@ -6,45 +6,28 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 02:27:32 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/23 02:59:44 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:09:52 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include <mlx.h>
-#include <stdlib.h>
-#include <unistd.h>
 
-size_t	mandelbrot_formula(t_complex c)
+#include <mlx.h>
+#include <stddef.h>
+
+int	mandelbrot_formula(t_complex c, void *args, size_t max_iter)
 {
 	size_t		i;
 	t_complex	z;
 
+	args = NULL;
 	i = 0;
 	z = (t_complex){0, 0};
-	while (i < MAX_ITER && ft_cabs(z) < 2.)
+	while (i < max_iter)
 	{
-		z = ft_cadd(ft_cpow(z, (t_complex){2, 0}), c);
+		z = ft_cadd(ft_cmul(z, z), c);
+		if (2. < ft_cabs(z))
+			return (i);
 		i++;
 	}
-	return (i);
-}
-
-void	mandelbrot(void)
-{
-	t_mandelbrot	config;
-
-	fractol_mlx_init(&config);
-	fractol_win_init(&config, "mandelbrot");
-	for (int i = -200; i < 200; i++)
-		for (int j = -150; j < 150; j++)
-	{	
-		mlx_pixel_put(
-				((t_vars *)&config)->mlx,
-				((t_vars *)&config)->win.mlx_win,
-				i,
-				j,
-				mandelbrot_formula((t_complex){i/100., j/100.}));
-	}
-	mlx_loop(((t_vars *)&config)->mlx);
+	return (-1);
 }
