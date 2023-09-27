@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 14:51:15 by hshimizu          #+#    #+#              #
-#    Updated: 2023/09/26 22:47:40 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/09/28 03:10:29 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,15 @@ MAIN			= $(DIR)/main.c
 
 SRCS			= \
 	$(addprefix $(DIR)/srcs/, \
-		fractol.c \
 		ft_complex_basic_function.c \
 		ft_complex_basic_operator.c \
 		ft_complex_function.c \
+		color.c \
+		utils.c \
+		renderer.c \
+		plot.c \
+		fractol.c \
+		mandelbrot.c \
 	)
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
