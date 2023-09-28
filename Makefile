@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 14:51:15 by hshimizu          #+#    #+#              #
-#    Updated: 2023/09/28 03:10:29 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/09/28 07:06:34 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ SRCS			= \
 		color.c \
 		utils.c \
 		renderer.c \
-		plot.c \
 		fractol.c \
 		mandelbrot.c \
 	)

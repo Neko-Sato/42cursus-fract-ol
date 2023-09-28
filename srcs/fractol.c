@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 02:42:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 06:10:23 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:44:59 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static int	fractol_plot(t_fractol_local *local);
+static void	do_plot(t_fractol_local *local);
+static int	plot(t_fractol_local *local);
 static int	keyevent(int keycode, t_fractol_local *local);
 static int	mouseevent(int button, int x, int y, t_fractol_local *local);
 
@@ -35,18 +36,47 @@ void	fractol(t_fractol *var)
 		local.renderer->mlx);
 	mlx_key_hook(local.renderer->win, keyevent, &local);
 	mlx_mouse_hook(local.renderer->win, mouseevent, &local);
-	mlx_loop_hook(local.renderer->mlx, fractol_plot, &local);
+	mlx_loop_hook(local.renderer->mlx, plot, &local);
 	mlx_loop(local.renderer->mlx);
 	del_renderer(local.renderer);
 	ft_putendl_fd("exit", STDOUT_FILENO);
 }
 
-static int	fractol_plot(t_fractol_local *local)
+static void	do_plot(t_fractol_local *local)
+{
+	t_data_addr		data_addr;
+	unsigned int	*addr;
+	int				index[2];
+
+	get_data_addr(local->renderer->img, &data_addr);
+	index[0] = 0;
+	while (index[0] < local->var->size.width)
+	{
+		index[1] = 0;
+		while (index[1] < local->var->size.height)
+		{
+			addr = index2addr(&data_addr, index);
+			if (local->iter <= 1 || *addr & 0xFF000000)
+				*addr = local->var->plot_func(
+						index,
+						index2position(index, local->var->position,
+							local->var->size, local->var->scale),
+						(int []){local->iter, local->var->max_iter},
+						local->var->plot_args);
+			index[1]++;
+		}
+		index[0]++;
+	}
+}
+
+static int	plot(t_fractol_local *local)
 {
 	if (local->iter < local->var->max_iter)
 	{
 		local->iter++;
-		plot(local);
+		do_plot(local);
+		mlx_put_image_to_window(
+		local->renderer->mlx, local->renderer->win, local->renderer->img, 0, 0);
 		mlx_do_sync(local->renderer->mlx);
 	}
 	return (0);
@@ -56,22 +86,22 @@ static int	keyevent(int keycode, t_fractol_local *local)
 {
 	if (keycode == XK_Left)
 	{
-		local->var->position.x -= local->var->scale;
+		local->var->position.x -= local->var->scale * 50;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Right)
 	{
-		local->var->position.x += local->var->scale;
+		local->var->position.x += local->var->scale * 50;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Up)
 	{
-		local->var->position.y += local->var->scale;
+		local->var->position.y += local->var->scale * 50;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Down)
 	{
-		local->var->position.y -= local->var->scale;
+		local->var->position.y -= local->var->scale * 10;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Escape)

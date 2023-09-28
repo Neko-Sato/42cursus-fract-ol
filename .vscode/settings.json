@@ -26,6 +26,12 @@
 		"string_view": "c",
 		"initializer_list": "c",
 		"utility": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"types.h": "c",
+		"atomic": "cpp",
+		"istream": "cpp",
+		"ostream": "cpp",
+		"memory": "c",
+		"tuple": "c"
 	}
 }
