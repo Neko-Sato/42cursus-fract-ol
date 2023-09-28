@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 22:38:21 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 17:34:11 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/28 20:57:03 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,15 @@ typedef struct s_mandelbrot
 	t_complex	**buff;
 }				t_mandelbrot;
 
-unsigned int	mandelbrot(int index[2], t_position position, int iter[2],
-					void *var);
+unsigned int	mandelbrot(t_plot_var *var, void *__args);
+
+typedef struct s_julia
+{
+	double		exp;
+	t_complex	point;
+	t_complex	**buff;
+}				t_julia;
+
+unsigned int	julia(t_plot_var *var, void *__args);
 
 #endif

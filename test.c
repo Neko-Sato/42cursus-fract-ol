@@ -9,9 +9,7 @@ int	main(void)
 {
 	t_complex **buff;
 	
-	buff = malloc(sizeof(t_complex) * 800);
-	for (int i = 0; i < 800; i++)
-		buff[i] = malloc(sizeof(t_complex) * 600);
+	buff = ft_2darraynew(sizeof(t_complex), 800, 600);
 	fractol(&(t_fractol){
 		.title = "test",
 		.size = (t_size){.width = 800, .height = 600},
@@ -21,4 +19,5 @@ int	main(void)
 		.plot_func = mandelbrot,
 		.plot_args = &(t_mandelbrot){.exp = 2, .buff = buff},
 	});
+	ft_2darraydel(buff);
 }

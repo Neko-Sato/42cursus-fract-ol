@@ -6,11 +6,13 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 02:42:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 17:44:59 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/28 21:23:47 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "renderer.h"
+#include "utils.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <libft.h>
@@ -57,11 +59,12 @@ static void	do_plot(t_fractol_local *local)
 		{
 			addr = index2addr(&data_addr, index);
 			if (local->iter <= 1 || *addr & 0xFF000000)
-				*addr = local->var->plot_func(
+					*addr = local->var->plot_func(&(t_plot_var){
 						index,
 						index2position(index, local->var->position,
 							local->var->size, local->var->scale),
-						(int []){local->iter, local->var->max_iter},
+						local->var->max_iter,
+						local->iter},
 						local->var->plot_args);
 			index[1]++;
 		}
@@ -76,8 +79,10 @@ static int	plot(t_fractol_local *local)
 		local->iter++;
 		do_plot(local);
 		mlx_put_image_to_window(
-		local->renderer->mlx, local->renderer->win, local->renderer->img, 0, 0);
-		mlx_do_sync(local->renderer->mlx);
+			local->renderer->mlx,
+			local->renderer->win,
+			local->renderer->img,
+			0, 0);
 	}
 	return (0);
 }
@@ -96,12 +101,12 @@ static int	keyevent(int keycode, t_fractol_local *local)
 	}
 	else if (keycode == XK_Up)
 	{
-		local->var->position.y += local->var->scale * 50;
+		local->var->position.y -= local->var->scale * 50;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Down)
 	{
-		local->var->position.y -= local->var->scale * 10;
+		local->var->position.y += local->var->scale * 50;
 		local->iter = 0;
 	}
 	else if (keycode == XK_Escape)
@@ -117,7 +122,7 @@ static int	mouseevent(int button, int x, int y, t_fractol_local *local)
 	{
 		local->var->position.x += (x - local->var->size.width / 2.)
 			* (local->var->scale * 0.1);
-		local->var->position.y += (local->var->size.height / 2 - y)
+		local->var->position.y += (y - local->var->size.height / 2.)
 			* (local->var->scale * 0.1);
 		local->var->scale *= 0.9;
 		local->iter = 0;
@@ -126,7 +131,7 @@ static int	mouseevent(int button, int x, int y, t_fractol_local *local)
 	{
 		local->var->position.x += (x - local->var->size.width / 2.)
 			* (local->var->scale / -9.);
-		local->var->position.y += (local->var->size.height / 2 - y)
+		local->var->position.y += (y - local->var->size.height / 2.)
 			* (local->var->scale / -9.);
 		local->var->scale /= 0.9;
 		local->iter = 0;

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 01:56:57 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/25 17:26:19 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/09/26 14:51:02 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/09/28 18:50:58 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef UTILS_H
+# define UTILS_H
 
-int	rgba2hex(int r, int g, int b, int a);
-int	hsvt2hex(double h, double s, double v, double t);
-int	colormap(double n);
+# include "renderer.h"
+# include "types.h"
+
+unsigned int	*index2addr(t_data_addr *data_addr, int index[2]);
+t_position		index2position(int index[2], t_position center, t_size size,
+					double scale);
 
 #endif
