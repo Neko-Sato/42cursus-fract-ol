@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 22:38:21 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 20:57:03 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/28 22:05:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_mandelbrot
 	t_complex	**buff;
 }				t_mandelbrot;
 
-unsigned int	mandelbrot(t_plot_var *var, void *__args);
+unsigned int	plot_mandelbrot(t_plot_var *var, void *args);
 
 typedef struct s_julia
 {
@@ -31,6 +31,6 @@ typedef struct s_julia
 	t_complex	**buff;
 }				t_julia;
 
-unsigned int	julia(t_plot_var *var, void *__args);
+unsigned int	plot_julia(t_plot_var *var, void *args);
 
 #endif

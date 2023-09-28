@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 02:27:32 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 21:26:38 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/28 22:05:40 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <math.h>
 #include <stddef.h>
 
-unsigned int	mandelbrot(t_plot_var *var, void *__args)
+unsigned int	plot_mandelbrot(t_plot_var *var, void *__args)
 {
 	t_mandelbrot	*args;
 	unsigned int	ret;
