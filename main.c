@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 22:30:51 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 22:38:27 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:03:23 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,28 @@ int	julia(double exp, t_complex point);
 
 int	main(int argc, char *argv[])
 {
-	
-	if ()
-	return (mandelbrot(2));
+	double	exp;
+
+	exp = 2.;
+	if (1 < argc)
+	{
+		if (!ft_strcmp(argv[1], "M"))
+		{
+			if (2 < argc)
+				exp = ft_atof(argv[2]);
+			return (mandelbrot(2));
+		}
+		else if (!ft_strcmp(argv[1], "J"))
+		{
+			if (4 < argc)
+				exp = ft_atof(argv[4]);
+			if (3 < argc)
+				return (julia(exp, (t_complex){ft_atof(argv[2]),
+						ft_atof(argv[3])}));
+		}
+	}
+	ft_putendl_fd("error", 2);
+	return (-1);
 }
 
 int	mandelbrot(double exp)
