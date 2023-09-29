@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 14:51:15 by hshimizu          #+#    #+#              #
-#    Updated: 2023/09/28 20:59:50 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/09/29 17:25:26 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,7 @@ all: $(FT) $(MLX) $(NAME)
 $(NAME): $(MAIN) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
 
-bonus: 
-	@echo bonus
+bonus: all
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)

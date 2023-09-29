@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 22:30:51 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/29 17:03:23 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:56:44 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 		{
 			if (2 < argc)
 				exp = ft_atof(argv[2]);
-			return (mandelbrot(2));
+			return (mandelbrot(exp));
 		}
 		else if (!ft_strcmp(argv[1], "J"))
 		{
