@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 02:27:32 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/09/28 22:05:40 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/11/04 23:27:12 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ unsigned int	plot_mandelbrot(t_plot_var *var, void *__args)
 	*buff_addr = ft_cadd(ft_cpow(*buff_addr, (t_complex){args->exp, 0}),
 			(t_complex){var->position.x, var->position.y});
 	if (2. < ft_cabs(*buff_addr))
-		ret = colormap(sqrt(var->iter / (double)var->max_iter));
+		ret = colormap(pow(var->iter / (double)var->max_iter, 1/log10(var->max_iter)));
 	else
 		ret = rgba2hex(0, 0, 0, 0xFF);
 	return (ret);
